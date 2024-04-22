@@ -1,0 +1,88 @@
+{% set version = "2.16.1" %}
+
+package:
+  name: tensorflow-base
+  version: {{ version }}
+
+source:
+  - url: https://files.pythonhosted.org/packages/c5/ef/5b8270e5665923bda4222f56382d9fbcb7fd6efd5fb8557ad0776848cdff/tensorflow_text-2.16.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl  # [linux and x86_64 and py==311]
+    sha256: 47646952590fd213b747247e6870d89bb4a368a95ae3561513d6c76e44f92a75                                                                                                                           # [linux and x86_64 and py==311]
+  - url: https://files.pythonhosted.org/packages/ed/5d/b55f48cdf98a164d293f660748c2501ea828e148250a4cadbb5b0d988735/tensorflow_text-2.16.1-cp311-cp311-macosx_10_9_x86_64.whl                          # [osx and 64 and py==311]
+    sha256: 47646952590fd213b747247e6870d89bb4a368a95ae3561513d6c76e44f92a75                                                                                                                           # [osx and 64 and py==311]
+  - url: https://files.pythonhosted.org/packages/cb/84/164f3275f272fc16cd4893cf1530aaf4626148ba9915e10aab3c7673a6a8/tensorflow_text-2.16.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl  # [linux and x86_64 and py==310]
+    sha256: 47646952590fd213b747247e6870d89bb4a368a95ae3561513d6c76e44f92a75                                                                                                                           # [linux and x86_64 and py==310]
+  - url: https://files.pythonhosted.org/packages/39/92/8ca4aa26bead4c92177a91c7d81c29f50a97a6e05ad8f3fa2686b782ec29/tensorflow_text-2.16.1-cp310-cp310-macosx_10_9_x86_64.whl                          # [osx and 64 and py==310]
+    sha256: 47646952590fd213b747247e6870d89bb4a368a95ae3561513d6c76e44f92a75                                                                                                                           # [osx and 64 and py==310]
+  - url: https://files.pythonhosted.org/packages/38/7b/ea8a199ecda0ea72de268f2187a111900c3ec283338f3fc76df9b68a3aad/tensorflow_text-2.16.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl    # [linux and x86_64 and py==39]
+    sha256: 47646952590fd213b747247e6870d89bb4a368a95ae3561513d6c76e44f92a75                                                                                                                           # [linux and x86_64 and py==39]
+  - url: https://files.pythonhosted.org/packages/03/4c/38fd108bc71d76ec9068a33a85037de845b8e9761640560fbb65dec3b99d/tensorflow_text-2.16.1-cp39-cp39-macosx_10_9_x86_64.whl                            # [osx and 64 and py==39]
+    sha256: 47646952590fd213b747247e6870d89bb4a368a95ae3561513d6c76e44f92a75                                                                                                                           # [osx and 64 and py==39]
+
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    # conda build requirements
+    - bazel >=0.10.0
+    - posix  # [win]
+    - m2-patch  # [win]
+    - pip
+    - python
+    - swig
+    - zlib
+    # requirements specified by the package itself
+    - wheel >=0.26
+    - termcolor >=1.1.0
+    - six >=1.10.0
+    - protobuf >=3.4.0
+    - numpy 1.13.3
+    - mock >=2.0.0        # [py2k]
+    - grpcio >=1.8.6
+    - gast >=0.2.0
+    - enum34 >=1.1.6      # [py2k]
+    - backports.weakref >=1.0rc1  # [py2k]
+    - astor >=0.6.0
+    - absl-py >=0.1.6
+    # the following packages are required for testing
+    - m2-perl             # [win]
+    - portpicker
+    - pyreadline          # [win]
+    - scipy
+    - scikit-learn
+    - mkl-devel           # [linux]
+  run:
+    - python
+    - termcolor >=1.1.0
+    - six >=1.10.0
+    - protobuf >=3.4.0
+    - {{ pin_compatible('numpy') }}
+    - mock >=2.0.0        # [py2k]
+    - grpcio >=1.8.6
+    - gast >=0.2.0
+    - enum34 >=1.1.6      # [py2k]
+    - backports.weakref >=1.0rc1  # [py2k]
+    - astor >=0.6.0
+    - absl-py >=0.1.6
+
+test:
+  imports:
+    - tensorflow
+  commands:
+    - conda inspect linkages -p $PREFIX tensorflow-text  # [linux]
+
+about:
+  home: https://github.com/tensorflow/text
+  license: Apache-2.0
+  license_family: Apache
+  summary: TensorFlow is a machine learning library, base package contains only tensorflow.
+  description: |
+    TensorFlow Text provides a collection of text related classes and ops ready to use with TensorFlow 2.0. The library
+    can perform the preprocessing regularly required by text-based models, and includes other features useful for
+    sequence modeling not provided by core TensorFlow.
+  dev_url: https://github.com/tensorflow/text
+  doc_url: https://github.com/tensorflow/text
