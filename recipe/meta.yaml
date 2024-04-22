@@ -1,23 +1,24 @@
 {% set version = "2.16.1" %}
+{% set name = "tensorflow-base" %}
+{% set name-alt = name.replace('-','_') %}
 
 package:
-  name: tensorflow-base
+  name: {{ name }}
   version: {{ version }}
 
 source:
-  - url: https://files.pythonhosted.org/packages/c5/ef/5b8270e5665923bda4222f56382d9fbcb7fd6efd5fb8557ad0776848cdff/tensorflow_text-2.16.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl  # [linux and x86_64 and py==311]
-    sha256: 47646952590fd213b747247e6870d89bb4a368a95ae3561513d6c76e44f92a75                                                                                                                           # [linux and x86_64 and py==311]
-  - url: https://files.pythonhosted.org/packages/ed/5d/b55f48cdf98a164d293f660748c2501ea828e148250a4cadbb5b0d988735/tensorflow_text-2.16.1-cp311-cp311-macosx_10_9_x86_64.whl                          # [osx and 64 and py==311]
-    sha256: 47646952590fd213b747247e6870d89bb4a368a95ae3561513d6c76e44f92a75                                                                                                                           # [osx and 64 and py==311]
-  - url: https://files.pythonhosted.org/packages/cb/84/164f3275f272fc16cd4893cf1530aaf4626148ba9915e10aab3c7673a6a8/tensorflow_text-2.16.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl  # [linux and x86_64 and py==310]
-    sha256: 47646952590fd213b747247e6870d89bb4a368a95ae3561513d6c76e44f92a75                                                                                                                           # [linux and x86_64 and py==310]
-  - url: https://files.pythonhosted.org/packages/39/92/8ca4aa26bead4c92177a91c7d81c29f50a97a6e05ad8f3fa2686b782ec29/tensorflow_text-2.16.1-cp310-cp310-macosx_10_9_x86_64.whl                          # [osx and 64 and py==310]
-    sha256: 47646952590fd213b747247e6870d89bb4a368a95ae3561513d6c76e44f92a75                                                                                                                           # [osx and 64 and py==310]
-  - url: https://files.pythonhosted.org/packages/38/7b/ea8a199ecda0ea72de268f2187a111900c3ec283338f3fc76df9b68a3aad/tensorflow_text-2.16.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl    # [linux and x86_64 and py==39]
-    sha256: 47646952590fd213b747247e6870d89bb4a368a95ae3561513d6c76e44f92a75                                                                                                                           # [linux and x86_64 and py==39]
-  - url: https://files.pythonhosted.org/packages/03/4c/38fd108bc71d76ec9068a33a85037de845b8e9761640560fbb65dec3b99d/tensorflow_text-2.16.1-cp39-cp39-macosx_10_9_x86_64.whl                            # [osx and 64 and py==39]
-    sha256: 47646952590fd213b747247e6870d89bb4a368a95ae3561513d6c76e44f92a75                                                                                                                           # [osx and 64 and py==39]
-
+  - url: https://files.pythonhosted.org/packages/c5/ef/5b8270e5665923bda4222f56382d9fbcb7fd6efd5fb8557ad0776848cdff/{{ name-alt }}-{{ version }}-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl  # [linux and x86_64 and py==311]
+    sha256: ad20018b92a4c8403a488edf68b6a7304062c67171bbbf54ef857b9177a63bf2                                                                                                                                 # [linux and x86_64 and py==311]
+  - url: https://files.pythonhosted.org/packages/ed/5d/b55f48cdf98a164d293f660748c2501ea828e148250a4cadbb5b0d988735/{{ name-alt }}-{{ version }}-cp311-cp311-macosx_10_9_x86_64.whl  # [osx and 64 and py==311]
+    sha256: 601dbd708df88adab7e15540d250857df7388be7c6066db66dede8b9399a879e                                                                                                         # [osx and 64 and py==311]
+  - url: https://files.pythonhosted.org/packages/cb/84/164f3275f272fc16cd4893cf1530aaf4626148ba9915e10aab3c7673a6a8/{{ name-alt }}-{{ version }}-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl  # [linux and x86_64 and py==310]
+    sha256: b1f67d810d2b1fa5480c82721bec6ed140765a3bf7a50830cf5a6f413fb0d867                                                                                                                                 # [linux and x86_64 and py==310]
+  - url: https://files.pythonhosted.org/packages/39/92/8ca4aa26bead4c92177a91c7d81c29f50a97a6e05ad8f3fa2686b782ec29/{{ name-alt }}-{{ version }}-cp310-cp310-macosx_10_9_x86_64.whl  # [osx and 64 and py==310]
+    sha256: bfd9a0891aa90d7ac68d9599c8392925aef495fc50e56fe6070615025545239d                                                                                                         # [osx and 64 and py==310]
+  - url: https://files.pythonhosted.org/packages/38/7b/ea8a199ecda0ea72de268f2187a111900c3ec283338f3fc76df9b68a3aad/{{ name-alt }}-{{ version }}cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl  # [linux and x86_64 and py==39]
+    sha256: e54c5691b64d0a9a810c0fa82281449ee63f80ca4103855a77c17a8b33d19f32                                                                                                                              # [linux and x86_64 and py==39]
+  - url: https://files.pythonhosted.org/packages/03/4c/38fd108bc71d76ec9068a33a85037de845b8e9761640560fbb65dec3b99d/{{ name-alt }}-{{ version }}-cp39-cp39-macosx_10_9_x86_64.whl  # [osx and 64 and py==39]
+    sha256: 6a289b78f72377577041c209960d28be6e2aa945f248796fd275d2a425a6aa80                                                                                                       # [osx and 64 and py==39]
 
 build:
   number: 0
