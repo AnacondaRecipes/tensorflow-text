@@ -1,4 +1,4 @@
-{% set version = "2.16.1" %}
+{% set version = "2.12.0" %}
 {% set name = "tensorflow-base" %}
 {% set name-alt = name.replace('-','_') %}
 
@@ -29,46 +29,9 @@ requirements:
     - {{ compiler('cxx') }}
   host:
     # conda build requirements
-    - bazel >=0.10.0
-    - posix  # [win]
-    - m2-patch  # [win]
-    - pip
-    - python
-    - swig
-    - zlib
-    # requirements specified by the package itself
-    - wheel >=0.26
-    - termcolor >=1.1.0
-    - six >=1.10.0
-    - protobuf >=3.4.0
-    - numpy 1.13.3
-    - mock >=2.0.0        # [py2k]
-    - grpcio >=1.8.6
-    - gast >=0.2.0
-    - enum34 >=1.1.6      # [py2k]
-    - backports.weakref >=1.0rc1  # [py2k]
-    - astor >=0.6.0
-    - absl-py >=0.1.6
-    # the following packages are required for testing
-    - m2-perl             # [win]
-    - portpicker
-    - pyreadline          # [win]
-    - scipy
-    - scikit-learn
-    - mkl-devel           # [linux]
+    - tensorflow 2.12.0
   run:
-    - python
-    - termcolor >=1.1.0
-    - six >=1.10.0
-    - protobuf >=3.4.0
-    - {{ pin_compatible('numpy') }}
-    - mock >=2.0.0        # [py2k]
-    - grpcio >=1.8.6
-    - gast >=0.2.0
-    - enum34 >=1.1.6      # [py2k]
-    - backports.weakref >=1.0rc1  # [py2k]
-    - astor >=0.6.0
-    - absl-py >=0.1.6
+    - tensorflow >=2.12.0,<2.13
 
 test:
   imports:
