@@ -1,6 +1,5 @@
 {% set version = "2.12.0" %}
 {% set name = "tensorflow-base" %}
-{% set name-alt = name.replace('-','_') %}
 
 package:
   name: {{ name }}
