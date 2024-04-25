@@ -28,9 +28,9 @@ requirements:
     - {{ compiler('cxx') }}
   host:
     # conda build requirements
-    - tensorflow 2.12.0
+    - tensorflow {{ version }}
   run:
-    - tensorflow >=2.12.0,<2.13
+    - {{ pin_compatible("tensorflow", min_pin="x.x.x", max_pin="x.x") }}
 
 test:
   imports:
