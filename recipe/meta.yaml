@@ -20,6 +20,9 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - git  # [not win]
+    - patch  # [not win]
+    - m2-patch  # [win]
   host:
     # conda build requirements
     - tensorflow {{ version }}
