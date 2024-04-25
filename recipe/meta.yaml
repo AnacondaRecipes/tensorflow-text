@@ -36,6 +36,7 @@ about:
   home: https://github.com/tensorflow/text
   license: Apache-2.0
   license_family: Apache
+  license_file: LICENSE
   summary: TensorFlow is a machine learning library, base package contains only tensorflow.
   description: |
     TensorFlow Text provides a collection of text related classes and ops ready to use with TensorFlow 2.0. The library
