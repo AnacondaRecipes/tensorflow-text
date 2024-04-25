@@ -13,6 +13,8 @@ source:
 
 build:
   number: 0
+  # skipping s390x since we don't have tf for it
+  skip: True  #[s390x]
 
 requirements:
   build:
