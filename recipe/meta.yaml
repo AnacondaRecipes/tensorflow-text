@@ -13,8 +13,8 @@ source:
 
 build:
   number: 0
-  # skipping s390x since we don't have tf for it
-  skip: True  #[s390x]
+  # skipping s390x and win-64 since we don't have tf for it
+  skip: True  #[s390x or win]
 
 requirements:
   build:
@@ -22,7 +22,6 @@ requirements:
     - {{ compiler('cxx') }}
     - git  # [not win]
     - patch  # [not win]
-    - m2-patch  # [win]
   host:
     # conda build requirements
     - tensorflow {{ version }}
