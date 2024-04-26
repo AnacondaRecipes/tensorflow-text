@@ -30,7 +30,7 @@ requirements:
 
 test:
   imports:
-    - tensorflow
+    - tensorflow_text
   commands:
     - conda inspect linkages -p $PREFIX tensorflow-text  # [linux]
 
