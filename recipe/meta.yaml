@@ -27,6 +27,10 @@ requirements:
     - git  # [not win]
     - patch  # [not win]
   host:
+    - python
+    - pip
+    - setuptools
+    - wheel
     # The version of tensorflow has to match the version of tensorflow-text
     - tensorflow {{ version }}
   run:
