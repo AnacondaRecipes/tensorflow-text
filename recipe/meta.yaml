@@ -34,6 +34,7 @@ requirements:
     # The version of tensorflow has to match the version of tensorflow-text
     - tensorflow {{ version }}
   run:
+    - python
     - {{ pin_compatible("tensorflow", min_pin="x.x.x", max_pin="x.x") }}
     - tensorflow-hub >=0.8.0
 
