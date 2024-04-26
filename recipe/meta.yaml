@@ -15,17 +15,13 @@ build:
   number: 0
   # skipping s390x and win-64 since we don't have tf for it
   skip: True  #[s390x or win]
-  script:
-    - export BAZEL_CXXOPTS="-isysroot:${CONDA_BUILD_SYSROOT}"  # [osx and arm64]
-    - export BAZEL_COPTS="-isysroot:${CONDA_BUILD_SYSROOT}"    # [osx and arm64]
-    - ./oss_scripts/run_build.sh
-    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - bazel
+    - bazel-toolchain
     - git  # [not win]
     - patch  # [not win]
   host:
