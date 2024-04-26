@@ -41,7 +41,10 @@ requirements:
 test:
   imports:
     - tensorflow_text
+  requires:
+    - pip
   commands:
+    - pip check
     - conda inspect linkages -p $PREFIX tensorflow-text  # [linux]
 
 about:
