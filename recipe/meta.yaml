@@ -27,6 +27,7 @@ requirements:
     - tensorflow {{ version }}
   run:
     - {{ pin_compatible("tensorflow", min_pin="x.x.x", max_pin="x.x") }}
+    - tensorflow-hub >=0.8.0
 
 test:
   imports:
