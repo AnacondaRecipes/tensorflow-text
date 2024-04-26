@@ -23,7 +23,7 @@ requirements:
     - git  # [not win]
     - patch  # [not win]
   host:
-    # conda build requirements
+    # The version of tensorflow has to match the version of tensorflow-text
     - tensorflow {{ version }}
   run:
     - {{ pin_compatible("tensorflow", min_pin="x.x.x", max_pin="x.x") }}
