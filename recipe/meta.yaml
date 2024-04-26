@@ -23,6 +23,7 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - bazel
     - git  # [not win]
     - patch  # [not win]
   host:
