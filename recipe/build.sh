@@ -1,4 +1,7 @@
-source gen-bazel-toolchain  
+source gen-bazel-toolchain
+
+export BAZEL_CXXOPTS="-isysroot:${CONDA_BUILD_SYSROOT}"
+export BAZEL_COPTS="-isysroot:${CONDA_BUILD_SYSROOT}"
 
 cat >> .bazelrc <<EOF
 build --crosstool_top=//bazel_toolchain:toolchain
