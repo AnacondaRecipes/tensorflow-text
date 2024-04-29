@@ -14,7 +14,8 @@ source:
 build:
   number: 0
   # skipping s390x and win-64 since we don't have tf for it
-  skip: True  #[s390x or win]
+  skip: True  # [s390x or win]
+  skip: True  # [py>=312]
 
 requirements:
   build:
