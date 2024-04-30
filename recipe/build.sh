@@ -1,17 +1,44 @@
-source gen-bazel-toolchain
-
-export BAZEL_CXXOPTS="-isysroot:${CONDA_BUILD_SYSROOT}"
-export BAZEL_COPTS="-isysroot:${CONDA_BUILD_SYSROOT}"
-
-cat >> .bazelrc <<EOF
-build --crosstool_top=//bazel_toolchain:toolchain
-build --logging=6
-build --verbose_failures
-build --toolchain_resolution_debug
-build --define=PREFIX=${PREFIX}
-build --define=PROTOBUF_INCLUDE_PATH=${PREFIX}/include
-build --local_cpu_resources=${CPU_COUNT}"
-EOF
+if [[ ${HOST} =~ .*darwin.* ]]; then
+    export GCC_HOST_COMPILER_PATH="${CC}"
+    export CONDA_BUILD_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk
+    # set up bazel config file for conda provided clang toolchain
+    cp -r ${RECIPE_DIR}/custom_clang_toolchain .
+    cd custom_clang_toolchain
+    sed -e "s:\${CLANG}:${CLANG}:" \
+        -e "s:\${INSTALL_NAME_TOOL}:${INSTALL_NAME_TOOL}:" \
+        -e "s:\${CONDA_BUILD_SYSROOT}:${CONDA_BUILD_SYSROOT}:" \
+        -e "s:\${MACOSX_DEPLOYMENT_TARGET}:${MACOSX_DEPLOYMENT_TARGET}:" \
+        -e "s:\${LDFLAGS}:${LDFLAGS}:" \
+        -e "s:\${CXXFLAGS}:${CFLAGS}:" \
+        -e "s:\${PREFIX}:${PREFIX}:" \
+        -e "s:\${LIBTOOL}:${LIBTOOL}:" \
+        -e "s:\${PY_VER}:${PY_VER}:" \
+        cc_wrapper.sh.template > cc_wrapper.sh
+    chmod +x cc_wrapper.sh
+     sed -e "s:\${PREFIX}:${BUILD_PREFIX}:" \
+        -e "s:\${LD}:${LD}:" \
+        -e "s:\${NM}:${NM}:" \
+        -e "s:\${STRIP}:${STRIP}:" \
+        -e "s:\${LIBTOOL}:${LIBTOOL}:" \
+        -e "s:\${CONDA_BUILD_SYSROOT}:${CONDA_BUILD_SYSROOT}:" \
+        CROSSTOOL.template > CROSSTOOL
+    sed -i "" "s:\${PREFIX}:${PREFIX}:" cc_toolchain_config.bzl
+    sed -i "" "s:\${BUILD_PREFIX}:${BUILD_PREFIX}:" cc_toolchain_config.bzl
+    sed -i "" "s:\${CONDA_BUILD_SYSROOT}:${CONDA_BUILD_SYSROOT}:" cc_toolchain_config.bzl
+    sed -i "" "s:\${LD}:${LD}:" cc_toolchain_config.bzl
+    sed -i "" "s:\${NM}:${NM}:" cc_toolchain_config.bzl
+    sed -i "" "s:\${STRIP}:${STRIP}:" cc_toolchain_config.bzl
+    sed -i "" "s:\${LIBTOOL}:${LIBTOOL}:" cc_toolchain_config.bzl
+    cd ..
+    set
+    # set build arguments
+    export  BAZEL_USE_CPP_ONLY_TOOLCHAIN=1
+    BUILD_OPTS="
+        --crosstool_top=//custom_clang_toolchain:toolchain
+        --verbose_failures
+        --config=opt"
+    export TF_ENABLE_XLA=1
+fi
 
 ./oss_scripts/run_build.sh
 

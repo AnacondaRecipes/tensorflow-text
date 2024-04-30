@@ -22,7 +22,6 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - bazel
-    - bazel-toolchain
     - git  # [not win]
     - patch  # [not win]
   host:
