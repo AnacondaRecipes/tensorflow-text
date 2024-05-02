@@ -1,6 +1,4 @@
 if [[ ${HOST} =~ .*darwin.* ]]; then
-    export GCC_HOST_COMPILER_PATH="${CC}"
-    export CONDA_BUILD_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk
     # set up bazel config file for conda provided clang toolchain
     cp -r ${RECIPE_DIR}/custom_clang_toolchain .
     cd custom_clang_toolchain
