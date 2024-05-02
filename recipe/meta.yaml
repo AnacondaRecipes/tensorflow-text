@@ -22,6 +22,15 @@ build:
   # skipping s390x and win-64 since we don't have tf for it
   skip: True  # [s390x or win]
   skip: True  # [py>=312]
+  missing_dso_whitelist:
+    - $RPATH/libtensorflow_framework.so.2
+    - '*/libdl.so.*'             # [linux]
+    - '*/libpthread.so.*'        # [linux]
+    - '*/libm.so.*'              # [linux]
+    - '*/libstdc++.so.*'         # [linux]
+    - '*/libgcc_s.so.*'          # [linux]
+    - '*/libc.so.*'              # [linux]
+    - '*/ld-linux-aarch64.so.*'  # [linux]
 
 requirements:
   build:
