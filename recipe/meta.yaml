@@ -45,10 +45,12 @@ requirements:
     - wheel
     # The version of tensorflow has to match the version of tensorflow-text
     - tensorflow {{ version }}
+    #- _tflow_select 2.3.0 mkl
   run:
     - python
     - {{ pin_compatible("tensorflow", min_pin="x.x.x", max_pin="x.x") }}
     - tensorflow-hub >=0.8.0
+    #- _tflow_select * mkl
 
 test:
   source_files:
