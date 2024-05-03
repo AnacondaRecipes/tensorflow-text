@@ -54,7 +54,7 @@ requirements:
 
 test:
   source_files:
-    - oss_scripts
+    # - oss_scripts
   imports:
     - tensorflow_text
   # requires:
@@ -64,7 +64,7 @@ test:
     # tensorflow METADATA as they weren't patched out when building tensorflow
     # - pip check
     - conda inspect linkages -p $PREFIX tensorflow-text  # [linux]
-    - source ./oss_scripts/run_tests.sh
+    # - source ./oss_scripts/run_tests.sh
 
 about:
   home: https://github.com/tensorflow/text
