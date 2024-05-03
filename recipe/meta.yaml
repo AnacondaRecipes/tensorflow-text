@@ -55,10 +55,12 @@ test:
     - oss_scripts
   imports:
     - tensorflow_text
-  requires:
-    - pip
+  # requires:
+    # - pip
   commands:
-    - pip check
+    # skipping pip-check because some PyPI dependencies of tensorflow --> tensorflow-cpu-aws end up in the
+    # tensorflow METADATA as they weren't patched out when building tensorflow
+    # - pip check
     - conda inspect linkages -p $PREFIX tensorflow-text  # [linux]
     - source ./oss_scripts/run_tests.sh
 
