@@ -46,6 +46,10 @@ requirements:
     - wheel
     # The version of tensorflow has to match the version of tensorflow-text
     - tensorflow {{ version }}
+    - flatbuffers  # [osx]
+    - sentencepiece  # [osx]
+    - abseil-cpp   # [osx]
+    - absl-py      # [osx]
   run:
     - python
     - {{ pin_compatible("tensorflow", min_pin="x.x.x", max_pin="x.x") }}
