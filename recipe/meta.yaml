@@ -51,6 +51,8 @@ requirements:
     - tensorflow-hub >=0.8.0
 
 test:
+  source_files:
+    - oss_scripts
   imports:
     - tensorflow_text
   requires:
@@ -58,6 +60,7 @@ test:
   commands:
     - pip check
     - conda inspect linkages -p $PREFIX tensorflow-text  # [linux]
+    - source ./oss_scripts/run_tests.sh
 
 about:
   home: https://github.com/tensorflow/text
