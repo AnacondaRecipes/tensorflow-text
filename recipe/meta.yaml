@@ -15,6 +15,7 @@ source:
     - 0005-skip-pull-tf-dependencies.patch
     - 0006-fix-broken-text-filters.patch
     - 0007-add-bazel-flags-for-macos-build.patch  # [osx]
+    - 0008-stat-file-to-see-if-it-is-missin-on-prefect-log.patch # [linux]
 
 build:
   number: 0
