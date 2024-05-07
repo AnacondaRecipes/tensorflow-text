@@ -1,7 +1,7 @@
 From acc6484e939c0e28e6298cc2ecbd9944d961c008 Mon Sep 17 00:00:00 2001
 From: Jack Olivieri <jolivieri@anaconda.com>
 Date: Thu, 2 May 2024 21:35:38 +0200
-Subject: [PATCH 5/6] skip pull tf dependencies
+Subject: [PATCH 4/6] skip pull tf dependencies
 
 ---
  oss_scripts/run_build.sh | 8 ++++----

@@ -1,0 +1,29 @@
+From 0d54c3f011630bcd8dce8c307f4edeca42a2293d Mon Sep 17 00:00:00 2001
+From: Jack Olivieri <jolivieri@anaconda.com>
+Date: Tue, 7 May 2024 15:17:46 +0200
+Subject: [PATCH 6/6] clean up after bazel temp files
+
+---
+ oss_scripts/run_build.sh | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/oss_scripts/run_build.sh b/oss_scripts/run_build.sh
+index d2114f6..b68a103 100755
+--- a/oss_scripts/run_build.sh
++++ b/oss_scripts/run_build.sh
+@@ -32,3 +32,11 @@ source oss_scripts/configure.sh
+ # Build the pip package.
+ bazel build --enable_runfiles --jobs=1 oss_scripts/pip_package:build_pip_package
+ ./bazel-bin/oss_scripts/pip_package/build_pip_package .
++
++#"${PYTHON}" setup.py clean --all
++bazel "--output_user_root=$SRC_DIR/../bazel-root" "--output_base=$SRC_DIR/../b-o" clean --expunge
++bazel "--output_user_root=$SRC_DIR/../bazel-root" "--output_base=$SRC_DIR/../b-o" shutdown
++rm -rf "$SRC_DIR/../b-o" "$SRC_DIR/../bazel-root"
++# this is needed because on many build systems the cache is actually under /root.
++# but this may not always be true/allowed, hence the or operation.
++rm -rf /root/.cache/bazel || true
+\ No newline at end of file
+-- 
+2.39.3 (Apple Git-146)
+

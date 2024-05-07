@@ -1,7 +1,7 @@
 From e19dda32f4a2a8186c36259d49473be1eddfd031 Mon Sep 17 00:00:00 2001
 From: Jack Olivieri <jolivieri@anaconda.com>
 Date: Thu, 2 May 2024 21:36:43 +0200
-Subject: [PATCH 6/6] fix broken text filters
+Subject: [PATCH 5/6] fix broken text filters
 
 ---
  oss_scripts/configure.sh | 4 ++--

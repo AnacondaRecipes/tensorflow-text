@@ -1,7 +1,7 @@
 From c9bb6e2405c155e30f679bc987c9426e81b35c39 Mon Sep 17 00:00:00 2001
 From: Jack Olivieri <jolivieri@anaconda.com>
 Date: Thu, 2 May 2024 21:34:44 +0200
-Subject: [PATCH 4/6] do not check for bazel version
+Subject: [PATCH 3/6] do not check for bazel version
 
 ---
  oss_scripts/run_build.sh | 16 ++++++++--------

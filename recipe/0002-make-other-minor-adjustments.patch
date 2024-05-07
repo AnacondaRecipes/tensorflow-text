@@ -1,7 +1,7 @@
 From 2e146caaa85d8831ba4cb41040690970295022fc Mon Sep 17 00:00:00 2001
 From: Jack Olivieri <jolivieri@anaconda.com>
 Date: Thu, 2 May 2024 21:33:45 +0200
-Subject: [PATCH 3/6] make other minor adjustments
+Subject: [PATCH 2/6] make other minor adjustments
 
 ---
  oss_scripts/pip_package/build_pip_package.sh | 2 +-
@@ -31,7 +31,7 @@ index caeb331..050c772 100755
  
  # Build the pip package.
 -bazel build --enable_runfiles oss_scripts/pip_package:build_pip_package
-+bazel build --enable_runfiles --verbose_failures oss_scripts/pip_package:build_pip_package
++bazel build --enable_runfiles --jobs=1 oss_scripts/pip_package:build_pip_package
  ./bazel-bin/oss_scripts/pip_package/build_pip_package .
 diff --git a/oss_scripts/run_tests.sh b/oss_scripts/run_tests.sh
 index c9046ae..f7aa6ba 100644
