@@ -25,15 +25,15 @@ build:
   # are too difficult to configure in bazel
   skip: True  # [osx]
   skip: True  # [py>=312]
-  missing_dso_whitelist:
-    - $RPATH/libtensorflow_framework.so.2
-    - '*/libdl.so.*'             # [linux]
-    - '*/libpthread.so.*'        # [linux]
-    - '*/libm.so.*'              # [linux]
-    - '*/libstdc++.so.*'         # [linux]
-    - '*/libgcc_s.so.*'          # [linux]
-    - '*/libc.so.*'              # [linux]
-    - '*/ld-linux-aarch64.so.*'  # [linux]
+  missing_dso_whitelist:                   # [linux]
+    - $RPATH/libtensorflow_framework.so.2  # [linux]
+    - '*/libdl.so.*'                       # [linux]
+    - '*/libpthread.so.*'                  # [linux]
+    - '*/libm.so.*'                        # [linux]
+    - '*/libstdc++.so.*'                   # [linux]
+    - '*/libgcc_s.so.*'                    # [linux]
+    - '*/libc.so.*'                        # [linux]
+    - '*/ld-linux-aarch64.so.*'            # [linux]
 
 requirements:
   build:
@@ -76,7 +76,7 @@ test:
     # tensorflow METADATA as they weren't patched out when building tensorflow
     # - pip check
     - conda inspect linkages -p $PREFIX tensorflow-text  # [linux]
-    # - source ./oss_scripts/run_tests.sh
+    - source ./oss_scripts/run_tests.sh
 
 about:
   home: https://github.com/tensorflow/text
