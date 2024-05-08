@@ -48,12 +48,14 @@ requirements:
     - wheel
     # The version of tensorflow has to match the version of tensorflow-text
     - tensorflow {{ version }}
-    #- _tflow_select 2.3.0 mkl
+    # uncomment this to build against other flavors
+    #- _tflow_select 2.3.0 {{ tensorflow_flavor }}
   run:
     - python
     - {{ pin_compatible("tensorflow", min_pin="x.x.x", max_pin="x.x") }}
     - tensorflow-hub >=0.8.0
-    #- _tflow_select * mkl
+    # uncomment this to build against other flavors
+    #- _tflow_select * {{ tensorflow_flavor }}
 
 test:
   source_files:
