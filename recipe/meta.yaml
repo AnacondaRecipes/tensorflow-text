@@ -59,16 +59,15 @@ test:
   source_files:
     - oss_scripts
     - WORKSPACE
-    - tensorflow_text/python/ops
-    - tensorflow_text/python/ragged
-    - tensorflow_text/python/numpy
-    - tensorflow_text/python/metrics
-    - tensorflow_text/python/benchmarks
+    - tensorflow_text
     - third_party
   imports:
     - tensorflow_text
   requires:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - bazel
+    - tensorflow-datasets
     # - pip
   commands:
     # skipping pip-check because some PyPI dependencies of tensorflow --> tensorflow-cpu-aws end up in the
