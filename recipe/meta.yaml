@@ -48,6 +48,8 @@ requirements:
     - wheel
     # The version of tensorflow has to match the version of tensorflow-text
     - tensorflow {{ version }}
+    # tensorflow-datasets is necessary to run some tests
+    - tensorflow-datasets
     # uncomment this to build against other flavors
     #- _tflow_select 2.3.0 {{ tensorflow_flavor }}
   run:
@@ -58,25 +60,15 @@ requirements:
     #- _tflow_select * {{ tensorflow_flavor }}
 
 test:
-  source_files:
-    - oss_scripts
-    - WORKSPACE
-    - tensorflow_text
-    - third_party
   imports:
     - tensorflow_text
   requires:
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
-    - bazel
-    - tensorflow-datasets
     # - pip
   commands:
     # skipping pip-check because some PyPI dependencies of tensorflow --> tensorflow-cpu-aws end up in the
     # tensorflow METADATA as they weren't patched out when building tensorflow
     # - pip check
     - conda inspect linkages -p $PREFIX tensorflow-text  # [linux]
-    #- source ./oss_scripts/run_tests.sh
 
 about:
   home: https://github.com/tensorflow/text
