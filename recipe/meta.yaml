@@ -14,7 +14,6 @@ source:
     - 0003-do-not-check-for-bazel-version.patch
     - 0004-skip-pull-tf-dependencies.patch
     - 0005-fix-broken-text-filters.patch
-    - 0006-add-bazel-flags-for-macos-build.patch  # [osx]
     - 0006-clean-up-after-bazel-temp-files.patch  # [linux]
 
 build:
