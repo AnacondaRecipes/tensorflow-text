@@ -49,7 +49,7 @@ requirements:
     # The version of tensorflow has to match the version of tensorflow-text
     - tensorflow {{ version }}
     # tensorflow-datasets is necessary to run some tests
-    - tensorflow-datasets
+    - tensorflow-datasets  # [py<311]
     # uncomment this to build against other flavors
     #- _tflow_select 2.3.0 {{ tensorflow_flavor }}
   run:
