@@ -6,5 +6,5 @@ CONDA_BUILD_SYSROOT:
   - "/opt/MacOSX10.13.sdk"        # [osx and x86_64]
 tensorflow_flavor:
   - mkl
-  - eigen
-  - gpu
+ # - eigen
+ # - gpu

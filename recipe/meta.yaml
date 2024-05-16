@@ -51,13 +51,13 @@ requirements:
     # tensorflow-datasets is necessary to run some tests
     - tensorflow-datasets  # [py<311]
     # uncomment this to build against other flavors
-    #- _tflow_select 2.3.0 {{ tensorflow_flavor }}
+    - _tflow_select 2.3.0 {{ tensorflow_flavor }}
   run:
     - python
     - {{ pin_compatible("tensorflow", min_pin="x.x.x", max_pin="x.x") }}
     - tensorflow-hub >=0.8.0
     # uncomment this to build against other flavors
-    #- _tflow_select * {{ tensorflow_flavor }}
+    - _tflow_select * {{ tensorflow_flavor }}
 
 test:
   imports:
