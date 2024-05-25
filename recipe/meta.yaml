@@ -1,0 +1,87 @@
+{% set version = "2.12.0" %}
+{% set name = "tensorflow-text" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/tensorflow/text/archive/v{{ version }}.tar.gz
+  sha256: 0de6d94d0b76a6050ae8c0ff618bbc5d9a646ef9929161149aad63974f8a56f2
+  patches:
+    - 0001-adjust-tf-version-range.patch
+    - 0002-make-other-minor-adjustments.patch
+    - 0003-do-not-check-for-bazel-version.patch
+    - 0004-skip-pull-tf-dependencies.patch
+    - 0005-fix-broken-text-filters.patch
+    - 0006-clean-up-after-bazel-temp-files.patch  # [linux]
+
+build:
+  number: 0
+  # skipping s390x and win-64 since we don't have tf for it
+  skip: True  # [s390x or win]
+  # skipping osx builds because bazel configuration for missing sources (bpe_model.cc, etc.)
+  # are too difficult to configure in bazel
+  skip: True  # [osx]
+  skip: True  # [py>=312]
+  missing_dso_whitelist:                   # [linux]
+    - $RPATH/libtensorflow_framework.so.2  # [linux]
+    - '*/libdl.so.*'                       # [linux]
+    - '*/libpthread.so.*'                  # [linux]
+    - '*/libm.so.*'                        # [linux]
+    - '*/libstdc++.so.*'                   # [linux]
+    - '*/libgcc_s.so.*'                    # [linux]
+    - '*/libc.so.*'                        # [linux]
+    - '*/ld-linux-aarch64.so.*'            # [linux]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - bazel
+    - git  # [not win]
+    - patch  # [not win]
+  host:
+    - python
+    - pip
+    - setuptools
+    - wheel
+    # The version of tensorflow has to match the version of tensorflow-text
+    - tensorflow {{ version }}
+    # tensorflow-datasets is necessary to run some tests
+    - tensorflow-datasets  # [py<311]
+    # uncomment this to build against other flavors
+    - _tflow_select 2.3.0 {{ tensorflow_flavor }}
+  run:
+    - python
+    - {{ pin_compatible("tensorflow", min_pin="x.x.x", max_pin="x.x") }}
+    - tensorflow-hub >=0.8.0
+    # uncomment this to build against other flavors
+    - _tflow_select * {{ tensorflow_flavor }}
+
+test:
+  imports:
+    - tensorflow_text
+  requires:
+    # - pip
+  commands:
+    # skipping pip-check because some PyPI dependencies of tensorflow --> tensorflow-cpu-aws end up in the
+    # tensorflow METADATA as they weren't patched out when building tensorflow
+    # - pip check
+    - conda inspect linkages -p $PREFIX tensorflow-text  # [linux]
+
+about:
+  home: https://github.com/tensorflow/text
+  license: Apache-2.0
+  license_family: Apache
+  license_file:
+    - LICENSE
+    - tensorflow_text/core/kernels/LICENSE
+    - oss_scripts/pip_package/LICENSE
+  summary: TensorFlow is a machine learning library, base package contains only tensorflow.
+  description: |
+    TensorFlow Text provides a collection of text related classes and ops ready to use with TensorFlow 2.0. The library
+    can perform the preprocessing regularly required by text-based models, and includes other features useful for
+    sequence modeling not provided by core TensorFlow.
+  dev_url: https://github.com/tensorflow/text
+  doc_url: https://github.com/tensorflow/text
